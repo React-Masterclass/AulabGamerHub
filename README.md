@@ -1,4 +1,4 @@
-# Final Proyect React Masterclass
+# Final Project React Masterclass
 
 Nome Progetto: 
   - AulabGamerHub
