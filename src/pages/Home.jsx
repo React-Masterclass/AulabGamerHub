@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import useDebouceSearch from '../hooks/useDebouceSearch';
+import GameCard from "../components/GameCard";
 
 export async function getGeners() {
   const response = await fetch(`${import.meta.env.VITE_BASE_URL}genres?key=${import.meta.env.VITE_API_KEY}`);
@@ -119,12 +120,7 @@ export default function Home() {
           gridAutoRows: 'minmax(100px, auto)'
       }}>
         {games && games.map((game) => (
-          <article key={game.id}>
-            <h4>{game.name}</h4>
-            <img src={game.background_image} alt={'game image'} />
-            <p>{game.genres.map(genre => genre.name).join(', ')}</p>
-            <button>Vedi Gioco</button>
-          </article>
+          <GameCard key={game.id} game={game} />
         ))}
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import GameCard from "../components/GameCard";
+
 
 export default function GenrePage() {
   const { genre } = useParams(); 
@@ -31,12 +33,7 @@ export default function GenrePage() {
           gridAutoRows: 'minmax(100px, auto)'
       }}>
         {genreGames && genreGames.map((game) => (
-          <article key={game.id}>
-            <h4>{game.name}</h4>
-            <img src={game.background_image} alt={'game image'} />
-            <p>{game.genres.map(genre => genre.name).join(', ')}</p>
-            <button>Vedi Gioco</button>
-          </article>
+          <GameCard key={game.id} game={game} />
         ))}
       </div>
     </div>

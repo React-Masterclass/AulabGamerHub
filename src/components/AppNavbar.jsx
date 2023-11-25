@@ -1,15 +1,18 @@
+import { Link } from "react-router-dom";
 export default function AppNavbar() {
   return (
     <nav>
       <ul>
-        <li><strong>AulabGamerHub</strong></li>
+        <li><strong>
+          <Link to={'/'}>AulabGamerHub</Link>
+        </strong></li>
       </ul>
       <ul>
         <li>
-          <a href="#">Login</a>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <a href="#">Register</a>
+        <Link to="/register">Register</Link>
         </li>
       </ul>
     </nav>
