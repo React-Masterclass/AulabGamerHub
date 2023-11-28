@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/Routing';
-import AppContext from "./contexts/AppContext";
+import AppContext from './contexts/AppContext';
 import useAuth from './hooks/useAuth';
 
 function App() {
@@ -12,7 +12,7 @@ function WrapperApp() {
 
   return (
     <AppContext.Provider value={data}>
-        <App />
+      <App />
     </AppContext.Provider>
   )
 }

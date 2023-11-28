@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GameCard from "../components/GameCard";
+import AppSideBar from "../components/AppSideBar";
 
 
 export default function GenrePage() {
@@ -17,24 +18,34 @@ export default function GenrePage() {
   }, [genre]); 
 
   return (
-    <div style={{
-      width: '80%'
-    }}>
-      <h1 style={{
-        margin: '0', 
-        padding: '0'
-      }}> {genre} Games</h1>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corrupti sapiente dignissimos ex doloribus impedit sed autem obcaecati consectetur, officiis fugit vitae omnis laborum? Consequatur optio et maxime soluta eveniet.</p>
 
+    <div style={{
+          display: 'flex', 
+          width: '100%',
+          marginTop: '50px'
+        }}>
+      <AppSideBar style={{
+        width: '30%'
+      }} />
       <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '10px',
-          gridAutoRows: 'minmax(100px, auto)'
+        width: '80%'
       }}>
-        {genreGames && genreGames.map((game) => (
-          <GameCard key={game.id} game={game} />
-        ))}
+        <h1 style={{
+          margin: '0', 
+          padding: '0'
+        }}> {genre} Games</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corrupti sapiente dignissimos ex doloribus impedit sed autem obcaecati consectetur, officiis fugit vitae omnis laborum? Consequatur optio et maxime soluta eveniet.</p>
+
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '10px',
+            gridAutoRows: 'minmax(100px, auto)'
+        }}>
+          {genreGames && genreGames.map((game) => (
+            <GameCard key={game.id} game={game} />
+          ))}
+        </div>
       </div>
     </div>
   )

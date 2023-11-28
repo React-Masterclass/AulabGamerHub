@@ -1,11 +1,11 @@
-import { useContext } from "react";
+// import { useContext } from "react";
+import supabase from "../supabase/client";
 import { CiLogin } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
-import AppNavbar from '../components/AppNavbar';
-import AppContext from "../contexts/AppContext";
+// import AppContext from "../contexts/AppContext";
 
 function Register() {
-  const { signUp } = useContext(AppContext); 
+  // const { signUp } = useContext(AppContext); 
   const navigate = useNavigate();
   // const [username, setUsername] = useState(''); 
   // const [email, setEmail] = useState(''); 
@@ -13,29 +13,33 @@ function Register() {
 
   const handleRegister = async (event) => {
     event.preventDefault();     
+    const registerForm = event.currentTarget;
     const { username, email, password } = Object.fromEntries(
-      new FormData(event.currentTarget)
+      new FormData(registerForm)
     )
-
-    let { error } = await signUp({
-      email,
-      password,
-      options: {
-        data: {
-          username
+    try {
+      let { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username
+          }
         }
+      })
+      if (error) {
+        alert(error.error_description || error.message)
+      } else {
+        registerForm.reset();
+        navigate('/settings');
       }
-    })
-    if (error) {
-      alert(error.error_description || error.message)
-    } else {
-      navigate('/account');
+    } catch (error) {
+      console.log(error);
     }
   }
 
   return (
     <div className="container">
-    <AppNavbar />
     <div style={{
       height: '80vh',
       width: '100%', 

@@ -1,12 +1,20 @@
+import { Link } from "react-router-dom";
+
 export default function AppFooter() {
   return (
     <footer>
-      <p>@copyright 2023 Masterclass React 8</p>
+      <p style={{margin: '0', padding: '0'}}>@copyright 2023 Masterclass React 8</p>
       <nav aria-label="breadcrumb">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Games</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
         </ul>
       </nav>
     </footer>

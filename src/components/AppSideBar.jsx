@@ -3,10 +3,10 @@ import Genres from './Genres';
 import Platforms from './Platforms';
 
 export default function AppSideBar() {
- const {
-  genres, 
-  platforms
-} = useLoaderData();
+  const {
+    genres, 
+    platforms
+  } = useLoaderData();
 
   return (
     <div style={{

@@ -1,12 +1,39 @@
+// import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import supabase from "../supabase/client";
 import { FaGoogle } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
-import AppNavbar from '../components/AppNavbar';
+// import AppContext from "../contexts/AppContext";
 
 function Login() {
+  // const { signIn } = useContext(AppContext); 
+  const navigate = useNavigate();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();     
+    const loginForm = event.currentTarget;
+    const { email, password } = Object.fromEntries(
+      new FormData(loginForm)
+    )
+    try {
+      let { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+      if (error) {
+        alert(error.error_description || error.message)
+      } else {
+        loginForm.reset();
+        navigate('/settings');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="container">
-      <AppNavbar />
       <div style={{
         height: '80vh',
         width: '100%', 
@@ -18,11 +45,11 @@ function Login() {
           width: '40%'
         }}>
           <h1>Log In</h1>
-          <form>  
+          <form onSubmit={handleLogin}>  
             <label htmlFor="email">Email address</label>
             <input type="email" id="email" name="email" placeholder="test@gmail.com" />
-            <label htmlFor="Password">Password address</label>
-            <input type="password" id="Password" name="Password" placeholder="supersecret" />
+            <label htmlFor="password">Password address</label>
+            <input type="password" id="password" name="password" placeholder="supersecret" />
             <button type="submit">
               Fai sign In
               <CiLogin style={{
@@ -47,7 +74,6 @@ function Login() {
               marginLeft: '10px'
             }} />
           </button>
-
         </div>
       </div>
     </div>
