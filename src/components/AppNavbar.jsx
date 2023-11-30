@@ -28,7 +28,7 @@ export default function AppNavbar() {
           <ul>
             <li>
               <details role="list" dir="rtl">
-                <summary aria-haspopup="listbox" role="link">{session.user.user_metadata.username}</summary>
+                <summary aria-haspopup="listbox" role="link">{session.user.user_metadata.username || session.user.email}</summary>
                 <ul role="listbox">
                   <li>
                     <Link to="/account">Account page</Link>

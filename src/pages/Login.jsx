@@ -4,6 +4,7 @@ import supabase from "../supabase/client";
 import { FaGoogle } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
+import style from "../styles/loginPage.module.css";
 // import AppContext from "../contexts/AppContext";
 
 function Login() {
@@ -32,18 +33,26 @@ function Login() {
     }
   }
 
+  const handleLoginWithDiscord = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'discord',
+      })
+      if (error) {
+        alert(error.error_description || error.message)
+      } else {
+        navigate('/settings');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <div className="container">
-      <div style={{
-        height: '80vh',
-        width: '100%', 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center'
-      }}>
-        <div id="LoginEmail" style={{
-          width: '40%'
-        }}>
+      <div className={style.login_container}>
+        <div id="LoginEmail" className={style.login_element}>
           <h1>Log In</h1>
           <form onSubmit={handleLogin}>  
             <label htmlFor="email">Email address</label>
@@ -52,27 +61,19 @@ function Login() {
             <input type="password" id="password" name="password" placeholder="supersecret" />
             <button type="submit">
               Fai sign In
-              <CiLogin style={{
-                marginLeft: '10px'
-              }}/>
+              <CiLogin className={style.login_icons}/>
             </button>
           </form>
         </div>
-        <div id="LoginOAuth" style={{
-          width: '40%'
-        }}>
+        <div id="LoginOAuth" className={style.login_element}>
           <h1>Puoi fare login con Social auth</h1>
           <button className="secondary">
             Login con Google
-            <FaGoogle style={{
-              marginLeft: '10px'
-            }} />
+            <FaGoogle className={style.login_icons}/>
           </button>
-          <button className="contrast">
+          <button className="contrast" onClick={handleLoginWithDiscord}>
             Login con Discord
-            <FaDiscord style={{
-              marginLeft: '10px'
-            }} />
+            <FaDiscord className={style.login_icons}/>
           </button>
         </div>
       </div>
