@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import useDebouceSearch from '../hooks/useDebouceSearch';
 import GameCard from "../components/GameCard";
 import AppSideBar from "../components/AppSideBar";
+import style from "../styles/homePage.module.css";
 
 
 export async function getGeners() {
@@ -93,42 +94,25 @@ export default function Home() {
           }
           setLoading(false);
         }
-        fetchData();
+        // fetchData();
     }, [debouncedSearch]);
 
   return (
-    <div style={{
-      display: 'flex', 
-      width: '100%',
-      marginTop: '50px'
-    }}>
-      <AppSideBar style={{
-        width: '30%'
-      }} />
-      <div style={{
-        width: '70%'
-      }} >
-        <h1 style={{
-          margin: '0', 
-          padding: '0', 
-          fontSize: '3rem'
-        }}>Nuovi e di tendenza</h1>
+    <div className={style.main_container}>
+      <AppSideBar className={style.sidebar} />
+      <div className={style.games_container} >
+        <h1 className={style.title}>Nuovi e di tendenza</h1>
         <p>Dati basati su giocatori e data di pubblicazione.</p>    
 
-        <input type="text" placeholder="cerca il tuo gioco..." onChange={handleSearch}/>
+        <input type="search" placeholder="cerca il tuo gioco..." onChange={handleSearch}/>
 
         {error && <p style={{
           color: 'red'
         }}>{error}</p>}
 
-        {loading && <progress></progress>}
+        {/* {loading && <progress></progress>} */}
 
-        <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '10px',
-            gridAutoRows: 'minmax(100px, auto)'
-        }}>
+        <div className={style.games_wrapper}>
           {games && games.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}

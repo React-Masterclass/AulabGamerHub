@@ -5,11 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 // import AppContext from "../contexts/AppContext";
 
 function Register() {
-  // const { signUp } = useContext(AppContext); 
+  // Invoco la funzione signUp dal context...
+    // const { signUp } = useContext(AppContext); 
+  // Uso lo stato per gestire ogni singolo field del form...
+    // const [username, setUsername] = useState(''); 
+    // const [email, setEmail] = useState(''); 
+    // const [password, setPassword] = useState(''); 
   const navigate = useNavigate();
-  // const [username, setUsername] = useState(''); 
-  // const [email, setEmail] = useState(''); 
-  // const [password, setPassword] = useState(''); 
 
   const handleRegister = async (event) => {
     event.preventDefault();     
@@ -52,16 +54,6 @@ function Register() {
       }}>
         <h1>Register new Account</h1>
         <form onSubmit={handleRegister}>  
-          {/* <div className="grid">
-            <label htmlFor="firstname">
-              First name
-              <input type="text" id="firstname" name="firstname" placeholder="Test name" />
-            </label>
-            <label htmlFor="lastname">
-              Last name
-              <input type="text" id="lastname" name="lastname" placeholder="Test lastname" />
-            </label>
-          </div> */}
           <label htmlFor="username">Username</label>
           <input 
             type="text"

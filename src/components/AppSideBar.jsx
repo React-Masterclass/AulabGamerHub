@@ -9,9 +9,7 @@ export default function AppSideBar() {
   } = useLoaderData();
 
   return (
-    <div style={{
-      width: '20%', 
-    }}>
+    <div>
       <Genres genres={genres} />
       <Platforms platforms={platforms} />
     </div>

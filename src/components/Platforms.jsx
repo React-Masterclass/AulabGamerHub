@@ -1,12 +1,11 @@
+
+import style from "../styles/aside.module.css";
 export default function Platforms() {
   return (
-    <aside>
-      <p>Lista delle Piattaforme</p>
+    <aside className={style.filter_aside}>
       <nav>
         <ul>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+    
         </ul>
       </nav>
     </aside>

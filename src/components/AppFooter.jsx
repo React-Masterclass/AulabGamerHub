@@ -10,10 +10,10 @@ export default function AppFooter() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">About</Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Devs team</Link>
           </li>
         </ul>
       </nav>

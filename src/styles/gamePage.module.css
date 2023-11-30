@@ -14,3 +14,65 @@
   width: 50%;
   height: 100%;
 }
+
+.fav_btn {
+  width: 50%;
+}
+
+.messages {
+  height: 550px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+}
+
+.chat_message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px 0px; 
+  scroll-behavior: smooth;
+}
+
+.chat_username {
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  color: gray;
+  font-style: italic;
+}
+
+.message {
+  padding: 0;
+  margin: 0;
+}
+
+.timestamps {
+  margin: 20px 0 0 0;
+  padding: 0;
+  font-size: 10px;
+  color: gray;
+  text-align: right;
+}
+
+.message_form_wrapper {
+  margin-top: 25px;
+}
+
+.message_form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message_input {
+  width: 75% !important;
+}
+
+.message_send_btn {
+  width: 20%;
+}
