@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import AppContext from "../contexts/AppContext";
-import supabase from "../supabase/client";
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AppContext from '../contexts/AppContext';
+import supabase from '../supabase/client';
 
 export default function AppNavbar() {
   const { session } = useContext(AppContext);
@@ -11,48 +11,54 @@ export default function AppNavbar() {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <nav>
       <ul>
-        <li><strong>
-          <Link to="/">AulabGamerHub</Link>
-        </strong></li>
+        <li>
+          <strong>
+            <Link to="/">AulabGamerHub</Link>
+          </strong>
+        </li>
       </ul>
-      { session ? (
-          <ul>
-            <li>
-              <details role="list" dir="rtl">
-                <summary aria-haspopup="listbox" role="link">{session.user.user_metadata.username || session.user.email}</summary>
-                <ul role="listbox">
-                  <li>
-                    <Link to="/account">Account page</Link>
-                  </li>
-                  <li>
-                    <Link to="/settings">Settings page</Link>
-                  </li>
-                  <li style={{cursor: 'pointer'}} onClick={handleSignOut}>
-                    Sign out
-                  </li>
-                </ul>
-              </details>
-            </li>
-          </ul>
-        ) : (
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          </ul>
-        ) }
+      {session ? (
+        <ul>
+          <li>
+            <details role="list" dir="rtl">
+              <summary aria-haspopup="listbox" role="link">
+                {session.user.user_metadata.username || session.user.email}
+              </summary>
+              <ul role="listbox">
+                <li>
+                  <Link to="/account">Account page</Link>
+                </li>
+                <li>
+                  <Link to="/settings">Settings page</Link>
+                </li>
+                <li style={{ cursor: 'pointer' }}>
+                  <button type="button" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+        </ul>
+      )}
     </nav>
-  )
+  );
 }

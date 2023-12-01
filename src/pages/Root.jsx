@@ -9,9 +9,9 @@ function Root() {
     <div className="container">
       <AppNavbar />
       <AppLayout />
-      <AppFooter />  
+      <AppFooter />
     </div>
-  )
+  );
 }
 
-export default Root; 
+export default Root;

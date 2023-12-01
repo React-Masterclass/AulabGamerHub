@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function AppFooter() {
   return (
     <footer>
-      <p style={{margin: '0', padding: '0'}}>@copyright 2023 Masterclass React 8</p>
+      <p style={{ margin: '0', padding: '0' }}>
+        @copyright 2023 Masterclass React 8
+      </p>
       <nav aria-label="breadcrumb">
         <ul>
           <li>
@@ -18,5 +20,5 @@ export default function AppFooter() {
         </ul>
       </nav>
     </footer>
-  )
+  );
 }
