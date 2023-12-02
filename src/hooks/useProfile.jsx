@@ -5,9 +5,11 @@ import AppContext from '../contexts/AppContext';
 function useProfile() {
   const { session } = useContext(AppContext);
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getProfile() {
+      setLoading(true);
       try {
         const { data, error } = await supabase
           .from('profiles')
@@ -22,6 +24,7 @@ function useProfile() {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     }
 
     getProfile();
@@ -29,6 +32,7 @@ function useProfile() {
 
   return {
     profile,
+    loading,
   };
 }
 

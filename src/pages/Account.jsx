@@ -6,7 +6,7 @@ function Account() {
   console.log(profile);
   return (
     <div className="container">
-      <h1>Account User Page</h1>
+      <h1>Account page</h1>
     </div>
   );
 }

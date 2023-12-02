@@ -35,6 +35,21 @@ Per questo progetto, utilizzerai tutto ciò che hai imparato in questo corso per
   * Utenti loggati possono lasciare una review su un gioco specifico
   * Utenti loggati creare una lista di giochi preferiti 
   * Utenti loggati possono rimuovere un gioco dai preferiti
-  * Uteni loggati possono chattare live su un gioco specifico
+  * [x] Uteni loggati possono chattare live su un gioco specifico
 * Context API / Global state management library
   * Utenti loggati possono condividere dati all'interno dell'applicazione
+
+
+## Real Time table implementation
+
+* Create messages table 
+  * set columns
+    * id 
+    * profile_id => auth.users.id
+    * content 
+    * created_at 
+    * game_id 
+* RSL rules
+  * SELECT Enable read access for all users 
+  * INSERT Users can insert their own messages
+* Real time check true

@@ -73,6 +73,7 @@ function Register() {
         },
       });
       if (error) {
+        // eslint-disable-next-line no-alert
         alert(error.error_description || error.message);
       } else {
         navigate('/settings');
