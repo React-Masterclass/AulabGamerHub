@@ -25,12 +25,13 @@ Per questo progetto, utilizzerai tutto ciò che hai imparato in questo corso per
   * Single Game Page - Mostra dettagli sullo specifico gioco, se autenticato utente puó selezionarlo tra i preferiti e puo lasciare un commento sul gioco. 
   * Login Page - Possibilitá di autenticazione ( email, OAuth ( discord ) )
   * Register Page - Possibilitá di registrare Utente con Email
-  * Account Page - Dettaglio profilo Utente, Lista giochi preferiti 
+  * Account Page - Dettaglio profilo Utente, Mostra dati utente autenticato
   * Settings Page - Aggiornamento profilo Utente
 * API + User Interaction
   * [x] Utenti possono cercare un gioco con una query
   * [x] Utenti possono cliccare su un gioco per vederne il dettaglio e eventuali reviews 
   * [x] Utenti possono filtrare su un gioco basandosi su un parametro
+  * [x] Utenti loggati possono caricare informazioni profilo ( nome, cognome, avatar, username, ecc... )
   * Utenti loggati possono lasciare una review su un gioco specifico
   * Utenti loggati creare una lista di giochi preferiti 
   * Utenti loggati possono rimuovere un gioco dai preferiti
