@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Account from '../pages/Account';
 import Settings from '../pages/Settings';
+import CommentPage from '../pages/CommentPage';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
       {
         path: '/game/:id',
         element: <GamePage />,
+        loader: getSingleGame,
+      },
+      {
+        path: '/game/:id/comment',
+        element: <CommentPage />,
         loader: getSingleGame,
       },
     ],

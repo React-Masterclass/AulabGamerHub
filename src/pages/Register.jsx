@@ -87,8 +87,7 @@ function Register() {
     <div className="container">
       <div className={style.register_container}>
         <div id="Register" className={style.register_element}>
-          <h1>Register new Account</h1>
-
+          <h2>Registra come nuovo account</h2>
           <Formik
             initialValues={{
               username: '',
@@ -105,28 +104,44 @@ function Register() {
               <Form>
                 <label htmlFor="username">
                   Username
-                  <Field name="username" type="text" />
+                  <Field
+                    name="username"
+                    type="text"
+                    placeholder="test_account"
+                  />
                 </label>
                 {errors.username && touched.username ? (
                   <p className={style.error_validation}>{errors.username}</p>
                 ) : null}
                 <label htmlFor="email">
                   Email address
-                  <Field name="email" type="email" />
+                  <Field
+                    name="email"
+                    type="email"
+                    placeholder="test@gmail.com"
+                  />
                 </label>
                 {errors.email && touched.email ? (
                   <p className={style.error_validation}>{errors.email}</p>
                 ) : null}
                 <label htmlFor="password">
                   Password
-                  <Field name="password" type="password" />
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="supersecret"
+                  />
                 </label>
                 {errors.password && touched.password ? (
                   <p className={style.error_validation}>{errors.password}</p>
                 ) : null}
                 <label htmlFor="confirm_password">
                   Confirm Password
-                  <Field name="confirm_password" type="password" />
+                  <Field
+                    name="confirm_password"
+                    type="password"
+                    placeholder="supersecret"
+                  />
                 </label>
                 {errors.confirm_password && touched.confirm_password ? (
                   <p className={style.error_validation}>

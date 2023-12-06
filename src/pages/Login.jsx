@@ -20,6 +20,7 @@ function Login() {
         password,
       });
       if (error) {
+        // eslint-disable-next-line no-alert
         alert(error.error_description || error.message);
       } else {
         loginForm.reset();
@@ -65,7 +66,7 @@ function Login() {
               />
             </label>
             <label htmlFor="password">
-              Password address
+              Password
               <input
                 type="password"
                 id="password"

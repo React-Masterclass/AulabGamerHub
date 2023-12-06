@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import supabase from '../supabase/client';
 import style from '../styles/gamePage.module.css';
 
-function Messages({ profile, game }) {
+function Messages({ game }) {
   const [chat, setChat] = useState([]);
   const chatRef = useRef(null);
 
@@ -48,8 +48,8 @@ function Messages({ profile, game }) {
     <div className={style.messages} ref={chatRef}>
       {chat &&
         chat.map((message) => (
-          <article className={style.chat_message}>
-            <p className={style.chat_username}>{profile.username}</p>
+          <article key={message.id} className={style.chat_message}>
+            {/* <p className={style.chat_username}>{message.}</p> */}
             <div>
               <p className={style.message}>{message.content}</p>
               <p className={style.timestamps}>{message.created_at}</p>

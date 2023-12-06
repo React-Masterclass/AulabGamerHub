@@ -5,7 +5,13 @@ export default function Genres({ genres }) {
   return (
     <aside className={style.filter_aside}>
       <nav>
-        Lista Genres
+        <span
+          style={{
+            fontWeight: 'bold',
+          }}
+        >
+          Categorie
+        </span>
         <ul>
           {genres.map((genre) => (
             <li key={genre.id}>

@@ -1,5 +1,4 @@
 .game_container {
-  height: 100vh;
   width: 100%;
   display: flex;
   margin-top: 30px;
@@ -74,4 +73,30 @@
 
 .message_send_btn {
   width: 20%;
+}
+
+.comment_container {
+  width: 70%;
+}
+
+.comment_title {
+  font-weight: bold;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.comment_details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: gray;
+  font-style: italic;
 }

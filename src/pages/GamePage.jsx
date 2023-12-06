@@ -1,9 +1,10 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 import { RiMailSendLine } from 'react-icons/ri';
 import useProfile from '../hooks/useProfile';
 import supabase from '../supabase/client';
 import style from '../styles/gamePage.module.css';
 import Messages from '../components/Messages';
+import Comments from '../components/Comments';
 
 export async function getSingleGame({ params }) {
   const response = await fetch(
@@ -45,61 +46,83 @@ function GamePage() {
   };
 
   return (
-    <div className={style.game_container}>
-      <div className={style.info_game_container}>
-        <h1>{game.name}</h1>
-        <img src={game.background_image} width={300} alt="" />
-        <div
-          style={{
-            margin: '20px 0px',
-          }}
-        >
-          Disponibile per:
-          <p>{game.platforms.map((p) => p.platform.name).join(', ')}</p>
-        </div>
-        <div>
-          <button type="button" className={style.fav_btn}>
-            Add to Favorites
-          </button>
-          <button type="button" className={`${style.fav_btn} secondary`}>
-            Remove from Favorites
-          </button>
-        </div>
-      </div>
-      {profile && (
-        <div className={style.chat_game_container}>
-          <Messages profile={profile} game={game} />
-          <div className={style.message_form_wrapper}>
-            <p
+    <div>
+      <div className={style.game_container}>
+        <div className={style.info_game_container}>
+          <h1>{game.name}</h1>
+          <img src={game.background_image} width={300} alt="" />
+          <div
+            style={{
+              margin: '20px 0px',
+            }}
+          >
+            Disponibile per:
+            <p>{game.platforms.map((p) => p.platform.name).join(', ')}</p>
+          </div>
+          {profile && (
+            <div>
+              <button type="button" className={style.fav_btn}>
+                Add to Favorites
+              </button>
+              <button type="button" className={`${style.fav_btn} secondary`}>
+                Remove from Favorites
+              </button>
+            </div>
+          )}
+          {profile && (
+            <Link
+              to={`/game/${game.id}/comment`}
               style={{
-                margin: '10px 0',
-                padding: '0',
+                textDecoration: 'none',
               }}
             >
-              Chat message with gamers
-            </p>
-            <form className={style.message_form} onSubmit={handleMessageSubmit}>
-              <input
-                className={style.message_input}
-                type="text"
-                name="message"
-                placeholder="type your message..."
-              />
               <button
-                type="submit"
-                className={`${style.message_send_btn} contrast`}
+                type="button"
+                className={`${style.fav_btn} contrast outline`}
               >
-                Send
-                <RiMailSendLine
-                  style={{
-                    marginLeft: '5px',
-                  }}
-                />
+                Write a comment
               </button>
-            </form>
-          </div>
+            </Link>
+          )}
         </div>
-      )}
+        {profile && (
+          <div className={style.chat_game_container}>
+            <Messages profile={profile} game={game} />
+            <div className={style.message_form_wrapper}>
+              <p
+                style={{
+                  margin: '10px 0',
+                  padding: '0',
+                }}
+              >
+                Chat message with gamers
+              </p>
+              <form
+                className={style.message_form}
+                onSubmit={handleMessageSubmit}
+              >
+                <input
+                  className={style.message_input}
+                  type="text"
+                  name="message"
+                  placeholder="type your message..."
+                />
+                <button
+                  type="submit"
+                  className={`${style.message_send_btn} contrast`}
+                >
+                  Send
+                  <RiMailSendLine
+                    style={{
+                      marginLeft: '5px',
+                    }}
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

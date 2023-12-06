@@ -9,7 +9,6 @@ function App() {
 
 function WrapperApp() {
   const data = useAuth();
-
   return (
     <AppContext.Provider value={data}>
       <App />
