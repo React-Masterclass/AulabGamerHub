@@ -32,7 +32,7 @@ Per questo progetto, utilizzerai tutto ciò che hai imparato in questo corso per
   * [x] Utenti possono cliccare su un gioco per vederne il dettaglio e eventuali reviews 
   * [x] Utenti possono filtrare su un gioco basandosi su un parametro
   * [x] Utenti loggati possono caricare informazioni profilo ( nome, cognome, avatar, username, ecc... )
-  * Utenti loggati possono lasciare una review su un gioco specifico
+  * [x] Utenti loggati possono lasciare una review su un gioco specifico
   * Utenti loggati creare una lista di giochi preferiti 
   * Utenti loggati possono rimuovere un gioco dai preferiti
   * [x] Uteni loggati possono chattare live su un gioco specifico

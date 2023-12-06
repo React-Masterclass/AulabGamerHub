@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import supabase from '../supabase/client';
 import style from '../styles/gamePage.module.css';
+import formatMessageDate from '../utils/formatMessageDate';
 
 function Messages({ game }) {
   const [chat, setChat] = useState([]);
@@ -9,7 +10,7 @@ function Messages({ game }) {
   const getMessages = async () => {
     const { data, error } = await supabase
       .from('messages')
-      .select('*')
+      .select('*, profile: profiles(username)')
       .eq('game_id', game.id);
     if (error) {
       // eslint-disable-next-line no-alert
@@ -49,10 +50,12 @@ function Messages({ game }) {
       {chat &&
         chat.map((message) => (
           <article key={message.id} className={style.chat_message}>
-            {/* <p className={style.chat_username}>{message.}</p> */}
+            <p className={style.chat_username}>{message.profile.username}</p>
             <div>
               <p className={style.message}>{message.content}</p>
-              <p className={style.timestamps}>{message.created_at}</p>
+              <p className={style.timestamps}>
+                {formatMessageDate(message.created_at)}
+              </p>
             </div>
           </article>
         ))}

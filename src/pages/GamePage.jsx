@@ -61,33 +61,32 @@ function GamePage() {
           </div>
           {profile && (
             <div>
+              {/* se gioco.id è presente nella tabella favorites ? Remove : Add */}
               <button type="button" className={style.fav_btn}>
                 Add to Favorites
               </button>
               <button type="button" className={`${style.fav_btn} secondary`}>
                 Remove from Favorites
               </button>
-            </div>
-          )}
-          {profile && (
-            <Link
-              to={`/game/${game.id}/comment`}
-              style={{
-                textDecoration: 'none',
-              }}
-            >
-              <button
-                type="button"
-                className={`${style.fav_btn} contrast outline`}
+              <Link
+                to={`/game/${game.id}/comment`}
+                style={{
+                  textDecoration: 'none',
+                }}
               >
-                Write a comment
-              </button>
-            </Link>
+                <button
+                  type="button"
+                  className={`${style.fav_btn} contrast outline`}
+                >
+                  Write a review
+                </button>
+              </Link>
+            </div>
           )}
         </div>
         {profile && (
           <div className={style.chat_game_container}>
-            <Messages profile={profile} game={game} />
+            <Messages game={game} />
             <div className={style.message_form_wrapper}>
               <p
                 style={{
@@ -123,6 +122,7 @@ function GamePage() {
           </div>
         )}
       </div>
+      <Comments game={game} />
     </div>
   );
 }

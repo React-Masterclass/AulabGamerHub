@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import supabase from '../supabase/client';
 import style from '../styles/gamePage.module.css';
+import formatMessageDate from '../utils/formatMessageDate';
 
 function Comments({ game }) {
   const [comments, setComments] = useState([]);
@@ -34,7 +35,9 @@ function Comments({ game }) {
                   <p className={style.detail}>
                     Published by: {comment.profile.username}
                   </p>
-                  <p className={style.detail}>{comment.created_at}</p>
+                  <p className={style.detail}>
+                    {formatMessageDate(comment.created_at)}
+                  </p>
                 </div>
               </article>
             </div>
