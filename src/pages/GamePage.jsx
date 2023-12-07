@@ -1,10 +1,12 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import { RiMailSendLine } from 'react-icons/ri';
-import useProfile from '../hooks/useProfile';
+import { useContext, useEffect, useState } from 'react';
+// import useProfile from '../hooks/useProfile';
 import supabase from '../supabase/client';
 import style from '../styles/gamePage.module.css';
 import Messages from '../components/Messages';
 import Comments from '../components/Comments';
+import AppContext from '../contexts/AppContext';
 
 export async function getSingleGame({ params }) {
   const response = await fetch(
@@ -17,8 +19,55 @@ export async function getSingleGame({ params }) {
 }
 
 function GamePage() {
+  const { session } = useContext(AppContext);
   const game = useLoaderData();
-  const { profile } = useProfile();
+  const [fav, setFav] = useState([]);
+
+  const getFavGame = async () => {
+    const { data, error } = await supabase
+      .from('favorites')
+      .select('*')
+      .eq('game_id', game.id)
+      .eq('profile_id', session.user.id);
+    if (error) {
+      // eslint-disable-next-line no-alert
+      alert(error.message);
+    } else {
+      setFav(() => [...data]);
+    }
+  };
+
+  const addToFavorites = async () => {
+    const { data, error } = await supabase
+      .from('favorites')
+      .insert([
+        {
+          game_id: game.id,
+          game_name: game.name,
+        },
+      ])
+      .select();
+    if (error) {
+      // eslint-disable-next-line no-alert
+      alert(error.message);
+    } else {
+      console.log(data);
+    }
+  };
+
+  const removeFromFavorites = async () => {
+    const { data, error } = await supabase
+      .from('favorites')
+      .delete()
+      .eq('game_id', game.id)
+      .eq('profile_id', session.user.id);
+    if (error) {
+      // eslint-disable-next-line no-alert
+      alert(error.message);
+    } else {
+      console.log(data);
+    }
+  };
 
   const handleMessageSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +78,7 @@ function GamePage() {
         .from('messages')
         .insert([
           {
-            profile_id: profile.id,
+            profile_id: session.user.id,
             game_id: game.id,
             content: message,
           },
@@ -45,6 +94,12 @@ function GamePage() {
     }
   };
 
+  useEffect(() => {
+    getFavGame();
+  }, []);
+
+  console.log(fav);
+
   return (
     <div>
       <div className={style.game_container}>
@@ -59,15 +114,25 @@ function GamePage() {
             Disponibile per:
             <p>{game.platforms.map((p) => p.platform.name).join(', ')}</p>
           </div>
-          {profile && (
+          {session.user && (
             <div>
-              {/* se gioco.id è presente nella tabella favorites ? Remove : Add */}
-              <button type="button" className={style.fav_btn}>
-                Add to Favorites
-              </button>
-              <button type="button" className={`${style.fav_btn} secondary`}>
-                Remove from Favorites
-              </button>
+              {fav.length !== 0 ? (
+                <button
+                  type="button"
+                  className={`${style.fav_btn} secondary`}
+                  onClick={removeFromFavorites}
+                >
+                  Remove from Favorites
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={style.fav_btn}
+                  onClick={addToFavorites}
+                >
+                  Add to Favorites
+                </button>
+              )}
               <Link
                 to={`/game/${game.id}/comment`}
                 style={{
@@ -84,7 +149,7 @@ function GamePage() {
             </div>
           )}
         </div>
-        {profile && (
+        {session.user && (
           <div className={style.chat_game_container}>
             <Messages game={game} />
             <div className={style.message_form_wrapper}>

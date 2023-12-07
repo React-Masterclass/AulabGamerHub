@@ -16,7 +16,7 @@ function useProfile() {
 
       const { data, error } = await supabase
         .from('profiles')
-        .select(`*`)
+        .select(`*, favorites: favorites(*)`)
         .eq('id', user.id)
         .single();
 

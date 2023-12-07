@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useProfile from '../hooks/useProfile';
+import getProfileImg from '../utils/getProfileImg';
 import AppContext from '../contexts/AppContext';
 import supabase from '../supabase/client';
 
 export default function AppNavbar() {
   const { session } = useContext(AppContext);
+  const { profile } = useProfile();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -31,7 +34,12 @@ export default function AppNavbar() {
           <li>
             <details role="list" dir="rtl">
               <summary aria-haspopup="listbox" role="link">
-                {session.user.user_metadata.username || session.user.email}
+                {/* <img
+                  src={profile && getProfileImg(profile.avatar_url)}
+                  alt="profile"
+                  width={30}
+                /> */}
+                {profile && profile.username}
               </summary>
               <ul role="listbox">
                 <li>
