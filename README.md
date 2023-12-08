@@ -55,7 +55,6 @@ Piattaforma che mostra videogiochi, e da la possibilitá ai suoi utenti autentic
 * [x] Utenti loggati possono lasciare una review su un gioco specifico
 * [x] Utenti loggati creare una lista di giochi preferiti 
 * [x] Utenti loggati possono rimuovere un gioco dai preferiti 
-  * [ ] fix UI in risposta al favorito
 * [x] Uteni loggati possono chattare live su un gioco specifico
 * Context API / Global state management library
   * Utenti loggati possono condividere dati all'interno dell'applicazione

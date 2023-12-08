@@ -3,7 +3,6 @@ import supabase from '../supabase/client';
 
 function useAuth() {
   const [session, setSession] = useState(null);
-
   // const signUp = async (email, password) => await supabase.auth.signUp(email, password);
 
   // const signIn = async (email, password) => await supabase.auth.signInWithPassword(email, password);
@@ -23,6 +22,7 @@ function useAuth() {
 
     return () => subscription.unsubscribe();
   }, []);
+
 
   // const [userSession, setUserSession] = useState(null)
 

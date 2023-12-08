@@ -3,6 +3,7 @@ import { RiMailSendLine } from 'react-icons/ri';
 import { useContext, useEffect, useState } from 'react';
 // import useProfile from '../hooks/useProfile';
 import supabase from '../supabase/client';
+import useProfile from '../hooks/useProfile';
 import style from '../styles/gamePage.module.css';
 import Messages from '../components/Messages';
 import Comments from '../components/Comments';
@@ -20,6 +21,7 @@ export async function getSingleGame({ params }) {
 
 function GamePage() {
   const { session } = useContext(AppContext);
+  const { profile } = useProfile();
   const game = useLoaderData();
   const [fav, setFav] = useState([]);
 
@@ -38,7 +40,7 @@ function GamePage() {
   };
 
   const addToFavorites = async () => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('favorites')
       .insert([
         {
@@ -51,12 +53,12 @@ function GamePage() {
       // eslint-disable-next-line no-alert
       alert(error.message);
     } else {
-      console.log(data);
+      getFavGame();
     }
   };
 
   const removeFromFavorites = async () => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('favorites')
       .delete()
       .eq('game_id', game.id)
@@ -65,7 +67,7 @@ function GamePage() {
       // eslint-disable-next-line no-alert
       alert(error.message);
     } else {
-      console.log(data);
+      getFavGame();
     }
   };
 
@@ -95,10 +97,10 @@ function GamePage() {
   };
 
   useEffect(() => {
-    getFavGame();
+    if (session) {
+      getFavGame();
+    }
   }, []);
-
-  console.log(fav);
 
   return (
     <div>
@@ -114,7 +116,7 @@ function GamePage() {
             Disponibile per:
             <p>{game.platforms.map((p) => p.platform.name).join(', ')}</p>
           </div>
-          {session.user && (
+          {profile && (
             <div>
               {fav.length !== 0 ? (
                 <button
@@ -149,7 +151,7 @@ function GamePage() {
             </div>
           )}
         </div>
-        {session.user && (
+        {profile && (
           <div className={style.chat_game_container}>
             <Messages game={game} />
             <div className={style.message_form_wrapper}>

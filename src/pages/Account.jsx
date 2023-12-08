@@ -11,7 +11,6 @@ function Account() {
   const { profile, loading } = useProfile();
   const [comments, setComments] = useState([]);
   const [favorites, setFavorites] = useState([]);
-
   useEffect(() => {
     const getComments = async () => {
       const { data, error } = await supabase
