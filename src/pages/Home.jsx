@@ -101,7 +101,7 @@ export default function Home() {
       }
       setLoading(false);
     }
-    // fetchData();
+    fetchData();
   }, [debouncedSearch]);
 
   return (
@@ -127,7 +127,7 @@ export default function Home() {
           </p>
         )}
 
-        {/* {loading && <progress></progress>} */}
+        {loading && <progress />}
 
         <div className={style.games_wrapper}>
           {games && games.map((game) => <GameCard key={game.id} game={game} />)}

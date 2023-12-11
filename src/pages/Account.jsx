@@ -51,7 +51,10 @@ function Account() {
         alt="profile"
         width={200}
       />
-      <h1>Benvenuto {profile && (profile.first_name || profile.usename)}</h1>
+      <h1>
+        Benvenuto
+        {profile && (profile.usename || session.user.user_metadata.full_name)}
+      </h1>
       <div>
         <details>
           <summary>Le tue Reviews</summary>

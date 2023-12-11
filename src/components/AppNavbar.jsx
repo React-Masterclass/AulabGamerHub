@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useProfile from '../hooks/useProfile';
-import getProfileImg from '../utils/getProfileImg';
 import AppContext from '../contexts/AppContext';
 import supabase from '../supabase/client';
 
@@ -34,12 +33,8 @@ export default function AppNavbar() {
           <li>
             <details role="list" dir="rtl">
               <summary aria-haspopup="listbox" role="link">
-                {/* <img
-                  src={profile && getProfileImg(profile.avatar_url)}
-                  alt="profile"
-                  width={30}
-                /> */}
-                {profile && profile.username}
+                {profile &&
+                  (profile.username || session.user.user_metadata.full_name)}
               </summary>
               <ul role="listbox">
                 <li>
